@@ -1,0 +1,76 @@
+---
+title: "Title"
+author: "You"
+format: 
+    revealjs:
+        # smaller: true
+        theme: simple
+        logo: 'maps-logotext.png'
+        footer: "Title"
+        highlight-style: dracula
+        code-line-numbers: true
+---
+
+# Section Title
+
+## This is a slide {.smaller}
+<!-- the {.smaller} makes the text on a slide a reasonable size. -->
+
+### This is a heading
+How about a paragraph.
+
+### Another heading.
+Another paragraph
+
+...
+
+This content is folded. It will appear after pressing next again.
+
+## Maths
+
+$1 + 2 + 3$ <- inline maths.
+$$\frac{1}{2}n^2 = \mathcal{O}(n^2)$$
+
+## Image
+![](maps-logotext.png)
+
+## Code Blocks
+### Plain Text
+```md {code-line-numbers="false"}
+5
+4 10
+3 12
+16 16
+4 2
+10 9
+```
+
+### Python with highliting
+
+<!-- This highlights lines 2 and 3 -->
+```{.python code-line-numbers="2-4"}
+n = int(input())
+
+for _ in range(n):
+    line = input() # "<A> <B>"
+    split_line = input().split() # ["<A>", "<B>"]
+    A = int(lst[0])
+    B = int(lst[1])
+    print(A*B)
+```
+
+## Columns {.smaller}
+:::: {.columns}
+::: {.column width="33%"}
+### Column 1
+qwkjeqwe
+:::
+::: {.column width="33%"}
+### Column 2
+asdasd
+:::
+::: {.column width="33%"}
+### Column 3
+qwjkrwy
+:::
+::::
