@@ -1,6 +1,6 @@
 ---
 title: "Introduction To Competitive Programming"
-auther: "Indra Kusumah-Kasim"
+author: "Indra Kusumah-Kasim"
 format: 
     revealjs:
         # smaller: true
