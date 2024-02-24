@@ -1,0 +1,310 @@
+---
+title: "Introduction To Competitive Programming"
+auther: "Indra Kusumah-Kasim"
+format: 
+    revealjs:
+        # smaller: true
+        theme: simple
+        logo: 'maps-logotext.png'
+        footer: "Introduction to Competitive Programming"
+        highlight-style: dracula
+        code-line-numbers: true
+---
+
+# The Problem Statement
+
+## {.smaller}
+### Statement
+A description of the problem.
+
+### Constraints
+Limitations on what input you will recieve.
+
+### Input
+What the input file will look like. Input is recieved through **stdin**.
+
+### Output
+What the output file will look like. Answers are outputted to **stdout**.
+
+## A $\times$ B {.smaller}
+### Statement
+Multiplying big numbers is hard. You have $n$ multiplication problems to solve. With your *big brain*, you have decided to write a program to help you do the problems.
+
+### Input
+The first line of input contains a single integer $0 < n < 10^5$, the number of problems. The following $n$ lines contains two integers, $a$ and $b$. $(1 \le a,b <10^9)$.
+
+### Output
+For each of the multiplication problems, display the answer on its own line.
+
+## Test Cases
+### Input
+```md {code-line-numbers="false"}
+5
+4 10
+3 12
+16 16
+4 2
+10 9
+```
+### Output
+```md {code-line-numbers="false"}
+40
+36
+256
+8
+90
+```
+
+## Python
+```{.python}
+n = int(input())
+
+for _ in range(n):
+    line = input() # "<A> <B>"
+    split_line = input().split() # ["<A>", "<B>"]
+    A = int(lst[0])
+    B = int(lst[1])
+    print(A*B)
+```
+
+## Python
+```python
+n = int(input())
+
+for _ in range(n):
+    a,b = map(int, input().split())
+    print(a*b)
+```
+is the same as:
+
+```python
+n = int(input())
+
+for _ in range(n):
+    a,b = (int(x) for x in input().split())
+    print(a*b)
+```
+
+## C++
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n,a,b;
+    cin >> n;
+    while(n--) {
+        cin >> a >> b;
+        cout << a * b << endl;
+    }
+}
+```
+
+. . .
+
+Will this work?
+
+> $1 \le a,b < 10^9$
+
+## C++
+```cpp {code-line-numbers="5"}
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n,a,b;
+    cin >> n;
+    while(n--) {
+        cin >> a >> b;
+        cout << a * b << endl;
+    }
+}
+```
+
+Will this work?
+
+> $1 \le a,b < 10^9$
+
+## C++
+```cpp {code-line-numbers="5"}
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    long long n,a,b;
+    cin >> n;
+    while(n--) {
+        cin >> a >> b;
+        cout << a * b << endl;
+    }
+}
+```
+
+Will this work?
+
+> $1 \le a,b < 10^9$
+
+## {.smaller}
+:::: {.columns}
+::: {.column width="33%"}
+### C++
+- +Most popular language
+- +Garunteed solution
+- +Extremely fast
+- +Good standard library
+- -No big integers
+- -Pain
+:::
+::: {.column width="33%"}
+### Java
+- +Reasonable Fast (~2-10x slower than C++)
+- +Garunteed solution
+- +Good standard library
+- +BigInteger class
+- -Verbose
+- -IO can be slow
+- -It's java
+:::
+::: {.column width="33%"}
+### Python
+- +Easy to learn
+- +Big integers by default
+- -Slowwwwww (~200x to C++)
+- -No guaranteed solution
+:::
+::::
+
+# Complexity
+FIT1008 compressed into 10 minutes
+
+## Complexity
+Consider the following code:
+```python
+for i in range(n):
+    do_stuff(i)
+```
+
+How many times does `do_stuff` run?
+
+. . .
+
+$n$ times
+
+## Complexity
+How about:
+```python
+for i in range(n):
+    for j in range(n):
+        do_stuff(i,j)
+```
+
+How many times does `do_stuff` run?
+
+. . .
+
+$n \times n = n$ times
+
+## Complexity
+Finally:
+```python {code-line-numbers="2"}
+for i in range(n):
+    for j in range(i):
+        do_stuff(i,j)
+```
+
+How many times does `do_stuff` run?
+
+. . .
+
+$1 + 2 + 3 + 4 + 5 + \dots + n$
+
+. . .
+
+$= \frac{1}{2}n^2 + \frac{1}{2}n$
+
+## Complexity {.smaller}
+In competitive programming, and more generally in computer science, we are **usually** not concerned with the specific runtime of a program. Instead we are concered with how it **grows**.
+
+. . . 
+
+For this we use **Big O Notation**
+
+. . .
+
+$$\frac{1}{2}n^2 + \frac{1}{2}n = \mathcal{O}(n^2)$$
+
+We are only concerned with **the most significant term**, and we ignore **constant factors**.
+
+(This is a major simplification but is useful for our purposes.)
+
+## Complexity
+:::: {.columns}
+::: {.column}
+```python
+for i in range(n):
+    for j in range(n):
+        do_stuff(i,j)
+```
+
+$n^2 = \mathcal{O}(n^2)$
+:::
+::: {.column}
+```python
+for i in range(n):
+    for j in range(i_1):
+        do_stuff(i,j)
+```
+$\frac{1}{2}n^2 + \frac{1}{2}n = \mathcal{O}(n^2)$
+:::
+::::
+
+Both of these have the **same time complexity**.
+
+## Complexity - More Examples
+```python
+while n > 0:
+    do_stuff(n)
+    n = n // 10
+```
+How many times can we divide $n$ by $10$?
+
+. . .
+
+$\log_{10}(n)$
+
+. . .
+
+$= \mathcal{O}(\log n)$
+
+## Complexity - More Examples
+```python
+def f(x):
+    if x == 0:
+        do_stuff(x)
+        return
+
+    do_stuff(x)
+    f(x-1)
+    f(X-1)
+```
+
+## Complexity - More Examples
+![](exp.png)
+
+## Complexity - More Examples
+$1 + 2 + 4 + \dots + 2^n$
+
+$= 2^{n+1} - 1$
+
+$= 2\times 2^n - 1$
+
+$=\mathcal{O}(2^n)$
+
+## Complexity and Constraints {.smaller}
+Your program must run within a **certain amount of time**, and with a **limited amount of memory.**
+
+**Time complexity** gives us a useful heuristic for how fast our algorithm has to run.
+
+![](comp.png){width="50%"}
+
+Complexity is only a guide and **constant factors do matter** in **certain cases**.
