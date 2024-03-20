@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.550">
 
   <meta name="author" content="Indra Kusumah-Kasim">
-  <title>Introduction To Competitive Programming</title>
+  <title>Greedy Algorithms</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -391,7 +391,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Introduction To Competitive Programming</h1>
+  <h1 class="title">Greedy Algorithms</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -402,285 +402,188 @@ Indra Kusumah-Kasim
 </div>
 
 </section>
+<section id="greedy-algorithms" class="slide level2 smaller">
+<h2>Greedy Algorithms</h2>
+<blockquote>
+<p>A <strong>greedy</strong> algorithm constructs a solution to the problem by always making a choice that looks best at the moment. A greedy algorithm never takes back its choices, but directly constructs the final solution.</p>
+</blockquote>
+<p><strong>Greedy</strong> does not refer to a single algorithm, but rather an approach to solving a problem.</p>
+</section>
 <section>
-<section id="the-problem-statement" class="title-slide slide level1 center">
-<h1>The Problem Statement</h1>
+<section id="examples" class="title-slide slide level1 center">
+<h1>Examples</h1>
 
 </section>
-<section id="section" class="slide level2 smaller">
-<h2></h2>
-<h3 id="statement">Statement</h3>
-<p>A description of the problem.</p>
-<h3 id="constraints">Constraints</h3>
-<p>Limitations on what input you will recieve.</p>
-<h3 id="input">Input</h3>
-<p>What the input file will look like. Input is recieved through <strong>stdin</strong>.</p>
-<h3 id="output">Output</h3>
-<p>What the output file will look like. Answers are outputted to <strong>stdout</strong>.</p>
+<section id="coin-problem" class="slide level2 smaller">
+<h2>Coin Problem</h2>
+<p>Let’s say with have <span class="math inline">\(1\)</span>, <span class="math inline">\(5\)</span> and <span class="math inline">\(10\)</span> cent coins. What is the smallest number of coins to get a sum of <span class="math inline">\(x\)</span> cents.</p>
+<p>What is the greedy approach to this problem?</p>
+<div class="fragment">
+<blockquote>
+<p>Repeatedly taking the <strong>largest coin possible.</strong></p>
+</blockquote>
+</div>
+<div class="fragment">
+<p>But why does this work?</p>
+</div>
 </section>
-<section id="a-times-b" class="slide level2 smaller">
-<h2>A <span class="math inline">\(\times\)</span> B</h2>
-<h3 id="statement-1">Statement</h3>
-<p>Multiplying big numbers is hard. You have <span class="math inline">\(n\)</span> multiplication problems to solve. With your <em>big brain</em>, you have decided to write a program to help you do the problems.</p>
-<h3 id="input-1">Input</h3>
-<p>The first line of input contains a single integer <span class="math inline">\(0 &lt; n &lt; 10^5\)</span>, the number of problems. The following <span class="math inline">\(n\)</span> lines contains two integers, <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. <span class="math inline">\((1 \le a,b &lt;10^9)\)</span>.</p>
-<h3 id="output-1">Output</h3>
-<p>For each of the multiplication problems, display the answer on its own line.</p>
+<section id="coin-problem---proof" class="slide level2 smaller" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Coin Problem - Proof</h2>
+<p>So we want to prove that the largest coin below the target amount is the optimal choice.</p>
+<p>Let’s start with the <span class="math inline">\(1\)</span> and <span class="math inline">\(5\)</span> cent coins.</p>
+<div class="fragment">
+<p><img data-src="1cent.webp" height="100"> <img data-src="1cent.webp" height="100"> <img data-src="1cent.webp" height="100"> <img data-src="1cent.webp" height="100"> <img data-src="1cent.webp" height="100"> <img data-src="1cent.webp" height="100"></p>
+</div>
+<div class="fragment">
+<p>No matter what, if we have <span class="math inline">\(5\)</span> cents or more, we can replace <span class="math inline">\(5\)</span> <span class="math inline">\(1\)</span>-cent coins with a <span class="math inline">\(5\)</span> cent coin to make a more optimal solution.</p>
+</div>
 </section>
-<section id="test-cases" class="slide level2">
-<h2>Test Cases</h2>
-<h3 id="input-2">Input</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>5</span>
-<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>4 10</span>
-<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>3 12</span>
-<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a>16 16</span>
-<span id="cb1-5"><a href="" aria-hidden="true" tabindex="-1"></a>4 2</span>
-<span id="cb1-6"><a href="" aria-hidden="true" tabindex="-1"></a>10 9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<h3 id="output-2">Output</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>40</span>
-<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>36</span>
-<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>256</span>
-<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a>8</span>
-<span id="cb2-5"><a href="" aria-hidden="true" tabindex="-1"></a>90</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="coin-problem---proof-1" class="slide level2 smaller" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Coin Problem - Proof</h2>
+<p>So we want to prove that the largest coin below the target amount is the optimal choice.</p>
+<p>Let’s start with the <span class="math inline">\(1\)</span> and <span class="math inline">\(5\)</span> cent coins.</p>
+<p><img data-src="5cent.webp" height="100"> <img data-src="1cent.webp" height="100"></p>
+<p>No matter what, if we have <span class="math inline">\(5\)</span> cents or more worth of <span class="math inline">\(1\)</span>-cent coins, we can replace <span class="math inline">\(5\)</span> <span class="math inline">\(1\)</span>-cent coins with a <span class="math inline">\(5\)</span> cent coin to make a more optimal solution. Hence it is always more optimal to take the <span class="math inline">\(5\)</span>-cent coin.</p>
 </section>
-<section id="python" class="slide level2">
-<h2>Python</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>())</span>
+<section id="coin-problem---proof-2" class="slide level2 smaller" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Coin Problem - Proof</h2>
+<p>Now consider the <span class="math inline">\(10\)</span>-cent coins.</p>
+<p><img data-src="5cent.webp" height="100"> <img data-src="1cent.webp" height="100"> <img data-src="1cent.webp" height="100"> <img data-src="1cent.webp" height="100"> <img data-src="1cent.webp" height="100"> <img data-src="1cent.webp" height="100"> <img data-src="1cent.webp" height="100"></p>
+<p>No matter how we use <span class="math inline">\(1\)</span> and <span class="math inline">\(5\)</span>-cent coins, if we have at least <span class="math inline">\(10\)</span> cents, we can replace them with a <span class="math inline">\(10\)</span>-cent coin to create a more optimal soluction. Hence it is always more optimal to take a <span class="math inline">\(10\)</span>-cent coin.</p>
+</section>
+<section id="coin-problem---proof-3" class="slide level2 smaller" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Coin Problem - Proof</h2>
+<p>Now consider the <span class="math inline">\(10\)</span>-cent coins.</p>
+<p><img data-src="10cent.jpg" height="100"> <img data-src="1cent.webp" height="100"></p>
+<p>No matter how we use <span class="math inline">\(1\)</span> and <span class="math inline">\(5\)</span>-cent coins, if we have at least <span class="math inline">\(10\)</span> cents, we can replace them with a <span class="math inline">\(10\)</span>-cent coin to create a more optimal soluction. Hence it is always more optimal to take a <span class="math inline">\(10\)</span>-cent coin.</p>
+</section>
+<section id="solution---code" class="slide level2">
+<h2>Solution - Code</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a>i <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>())</span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a>ans <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-4"><a href=""></a><span class="cf">while</span> i <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb1-5"><a href=""></a>    <span class="cf">if</span> i <span class="op">&gt;=</span> <span class="dv">10</span>: <span class="co"># Take a 10-cent coin</span></span>
+<span id="cb1-6"><a href=""></a>        i <span class="op">-=</span> <span class="dv">10</span></span>
+<span id="cb1-7"><a href=""></a></span>
+<span id="cb1-8"><a href=""></a>    <span class="cf">elif</span> i <span class="op">&gt;=</span> <span class="dv">5</span>: <span class="co"># Take a 5-cent coin</span></span>
+<span id="cb1-9"><a href=""></a>        i <span class="op">-=</span> <span class="dv">5</span></span>
+<span id="cb1-10"><a href=""></a></span>
+<span id="cb1-11"><a href=""></a>    <span class="cf">else</span>: <span class="co"># Take a 1-cent coin</span></span>
+<span id="cb1-12"><a href=""></a>        i <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb1-13"><a href=""></a>    </span>
+<span id="cb1-14"><a href=""></a>    <span class="co"># Add 1 to the coin count</span></span>
+<span id="cb1-15"><a href=""></a>    ans <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-16"><a href=""></a></span>
+<span id="cb1-17"><a href=""></a><span class="bu">print</span>(ans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="solution---code-better" class="slide level2">
+<h2>Solution - Code (Better)</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a>i <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>())</span>
+<span id="cb2-2"><a href=""></a></span>
+<span id="cb2-3"><a href=""></a>ans <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-4"><a href=""></a></span>
+<span id="cb2-5"><a href=""></a>ans <span class="op">+=</span> i <span class="op">//</span> <span class="dv">10</span> <span class="co"># Take as many 10-cent coins as possible.</span></span>
+<span id="cb2-6"><a href=""></a>i <span class="op">=</span> i <span class="op">%</span> <span class="dv">10</span></span>
+<span id="cb2-7"><a href=""></a></span>
+<span id="cb2-8"><a href=""></a>ans <span class="op">+=</span> i <span class="op">//</span> <span class="dv">5</span></span>
+<span id="cb2-9"><a href=""></a>i <span class="op">=</span> i <span class="op">%</span> <span class="dv">5</span></span>
+<span id="cb2-10"><a href=""></a></span>
+<span id="cb2-11"><a href=""></a>ans <span class="op">+=</span> i</span>
+<span id="cb2-12"><a href=""></a></span>
+<span id="cb2-13"><a href=""></a><span class="bu">print</span>(ans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="coin-problem---extension" class="slide level2 smaller" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Coin Problem - Extension</h2>
+<p>But what if we had <span class="math inline">\(1\)</span>, <span class="math inline">\(5\)</span>, and <span class="math inline">\(13\)</span>-cent coins?</p>
+<ul>
+<li>Can we still use a greedy approach?</li>
+<li>Why/why not?</li>
+<li>If we can’t how else can we approach this problem?</li>
+</ul>
+</section>
+<section id="scheduling" class="slide level2 smaller">
+<h2>Scheduling</h2>
+<p>Given <span class="math inline">\(n\)</span> events with their starting and ending times, find a schedule that includes as many events as possible without any events</p>
+<div class="relative" style="background: lightgray; width: 350px; margin-left: 100px; margin-right: auto;">
+<p>A</p>
+</div>
+<div class="relative" style="background: lightgray; width: 150px; margin-left: 400px; margin-right: auto;">
+<p>B</p>
+</div>
+<div class="relative" style="background: lightgray; width: 350px; margin-left: 450px; margin-right: auto;">
+<p>C</p>
+</div>
+<div class="relative" style="background: lightgray; width: 250px; margin-left: 500px; margin-right: auto;">
+<p>D</p>
+</div>
+<div class="relative" style="background: lightgray; width: 100px; margin-left: 750px; margin-right: auto;">
+<p>E</p>
+</div>
+<p>What’s a greedy approach to solving this problem?</p>
+<div class="fragment">
+<p>We want to take the next event with the earliest end time.</p>
+</div>
+</section>
+<section id="scheduling-1" class="slide level2 smaller">
+<h2>Scheduling</h2>
+<p>Given <span class="math inline">\(n\)</span> events with their starting and ending times, find a schedule that includes as many events as possible without any events</p>
+<div class="relative" style="background: gray; width: 350px; margin-left: 100px; margin-right: auto;">
+<p>A</p>
+</div>
+<div class="relative" style="background: lightgray; width: 150px; margin-left: 400px; margin-right: auto;">
+<p>B</p>
+</div>
+<div class="relative" style="background: lightgray; width: 350px; margin-left: 450px; margin-right: auto;">
+<p>C</p>
+</div>
+<div class="relative" style="background: gray; width: 250px; margin-left: 500px; margin-right: auto;">
+<p>D</p>
+</div>
+<div class="relative" style="background: gray; width: 100px; margin-left: 750px; margin-right: auto;">
+<p>E</p>
+</div>
+<p>What’s a greedy approach to solving this problem?</p>
+<p>We want to take the next event with the earliest end time.</p>
+</section>
+<section id="scheduling---solution" class="slide level2">
+<h2>Scheduling - Solution</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a>tasks <span class="op">=</span> [(<span class="dv">1</span>,<span class="dv">2</span>),(<span class="dv">3</span>,<span class="dv">4</span>)] <span class="co"># Skipping input.</span></span>
 <span id="cb3-2"><a href=""></a></span>
-<span id="cb3-3"><a href=""></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb3-4"><a href=""></a>    line <span class="op">=</span> <span class="bu">input</span>() <span class="co"># "&lt;A&gt; &lt;B&gt;"</span></span>
-<span id="cb3-5"><a href=""></a>    split_line <span class="op">=</span> <span class="bu">input</span>().split() <span class="co"># ["&lt;A&gt;", "&lt;B&gt;"]</span></span>
-<span id="cb3-6"><a href=""></a>    A <span class="op">=</span> <span class="bu">int</span>(lst[<span class="dv">0</span>])</span>
-<span id="cb3-7"><a href=""></a>    B <span class="op">=</span> <span class="bu">int</span>(lst[<span class="dv">1</span>])</span>
-<span id="cb3-8"><a href=""></a>    <span class="bu">print</span>(A<span class="op">*</span>B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href=""></a>sort(tasks, key <span class="op">=</span> <span class="kw">lambda</span> x: x[<span class="dv">1</span>]) <span class="co"># Sorting by end time.</span></span>
+<span id="cb3-4"><a href=""></a></span>
+<span id="cb3-5"><a href=""></a>current_time <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-6"><a href=""></a>ans <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-7"><a href=""></a></span>
+<span id="cb3-8"><a href=""></a><span class="cf">for</span> (start,end) <span class="kw">in</span> tasks: </span>
+<span id="cb3-9"><a href=""></a></span>
+<span id="cb3-10"><a href=""></a>    <span class="cf">if</span> (start <span class="op">&lt;</span> current_time): <span class="co"># Skip task if it begins before current time.</span></span>
+<span id="cb3-11"><a href=""></a>        <span class="cf">continue</span></span>
+<span id="cb3-12"><a href=""></a>    </span>
+<span id="cb3-13"><a href=""></a>    <span class="co"># Perform current task, current_time is now the end time of the task.</span></span>
+<span id="cb3-14"><a href=""></a>    current_time <span class="op">=</span> end</span>
+<span id="cb3-15"><a href=""></a>    ans <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb3-16"><a href=""></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="python-1" class="slide level2">
-<h2>Python</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>())</span>
-<span id="cb4-2"><a href=""></a></span>
-<span id="cb4-3"><a href=""></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb4-4"><a href=""></a>    a,b <span class="op">=</span> <span class="bu">map</span>(<span class="bu">int</span>, <span class="bu">input</span>().split())</span>
-<span id="cb4-5"><a href=""></a>    <span class="bu">print</span>(a<span class="op">*</span>b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>is the same as:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>())</span>
-<span id="cb5-2"><a href=""></a></span>
-<span id="cb5-3"><a href=""></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb5-4"><a href=""></a>    a,b <span class="op">=</span> (<span class="bu">int</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">input</span>().split())</span>
-<span id="cb5-5"><a href=""></a>    <span class="bu">print</span>(a<span class="op">*</span>b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="c" class="slide level2">
-<h2>C++</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href=""></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
-<span id="cb6-2"><a href=""></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
-<span id="cb6-3"><a href=""></a></span>
-<span id="cb6-4"><a href=""></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb6-5"><a href=""></a>    <span class="dt">int</span> n<span class="op">,</span>a<span class="op">,</span>b<span class="op">;</span></span>
-<span id="cb6-6"><a href=""></a>    cin <span class="op">&gt;&gt;</span> n<span class="op">;</span></span>
-<span id="cb6-7"><a href=""></a>    <span class="cf">while</span><span class="op">(</span>n<span class="op">--)</span> <span class="op">{</span></span>
-<span id="cb6-8"><a href=""></a>        cin <span class="op">&gt;&gt;</span> a <span class="op">&gt;&gt;</span> b<span class="op">;</span></span>
-<span id="cb6-9"><a href=""></a>        cout <span class="op">&lt;&lt;</span> a <span class="op">*</span> b <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
-<span id="cb6-10"><a href=""></a>    <span class="op">}</span></span>
-<span id="cb6-11"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="fragment">
-<p>Will this work?</p>
-<blockquote>
-<p><span class="math inline">\(1 \le a,b &lt; 10^9\)</span></p>
-</blockquote>
-</div>
-</section>
-<section id="c-1" class="slide level2">
-<h2>C++</h2>
-<div class="sourceCode" id="cb7" data-code-line-numbers="5"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href=""></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
-<span id="cb7-2"><a href=""></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
-<span id="cb7-3"><a href=""></a></span>
-<span id="cb7-4"><a href=""></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb7-5"><a href=""></a>    <span class="dt">int</span> n<span class="op">,</span>a<span class="op">,</span>b<span class="op">;</span></span>
-<span id="cb7-6"><a href=""></a>    cin <span class="op">&gt;&gt;</span> n<span class="op">;</span></span>
-<span id="cb7-7"><a href=""></a>    <span class="cf">while</span><span class="op">(</span>n<span class="op">--)</span> <span class="op">{</span></span>
-<span id="cb7-8"><a href=""></a>        cin <span class="op">&gt;&gt;</span> a <span class="op">&gt;&gt;</span> b<span class="op">;</span></span>
-<span id="cb7-9"><a href=""></a>        cout <span class="op">&lt;&lt;</span> a <span class="op">*</span> b <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
-<span id="cb7-10"><a href=""></a>    <span class="op">}</span></span>
-<span id="cb7-11"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Will this work?</p>
-<blockquote>
-<p><span class="math inline">\(1 \le a,b &lt; 10^9\)</span></p>
-</blockquote>
-</section>
-<section id="c-2" class="slide level2">
-<h2>C++</h2>
-<div class="sourceCode" id="cb8" data-code-line-numbers="5"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb8-1"><a href=""></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
-<span id="cb8-2"><a href=""></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
-<span id="cb8-3"><a href=""></a></span>
-<span id="cb8-4"><a href=""></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb8-5"><a href=""></a>    <span class="dt">long</span> <span class="dt">long</span> n<span class="op">,</span>a<span class="op">,</span>b<span class="op">;</span></span>
-<span id="cb8-6"><a href=""></a>    cin <span class="op">&gt;&gt;</span> n<span class="op">;</span></span>
-<span id="cb8-7"><a href=""></a>    <span class="cf">while</span><span class="op">(</span>n<span class="op">--)</span> <span class="op">{</span></span>
-<span id="cb8-8"><a href=""></a>        cin <span class="op">&gt;&gt;</span> a <span class="op">&gt;&gt;</span> b<span class="op">;</span></span>
-<span id="cb8-9"><a href=""></a>        cout <span class="op">&lt;&lt;</span> a <span class="op">*</span> b <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
-<span id="cb8-10"><a href=""></a>    <span class="op">}</span></span>
-<span id="cb8-11"><a href=""></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Will this work?</p>
-<blockquote>
-<p><span class="math inline">\(1 \le a,b &lt; 10^9\)</span></p>
-</blockquote>
-</section>
-<section id="section-1" class="slide level2 smaller">
-<h2></h2>
-<div class="columns">
-<div class="column" style="width:33%;">
-<h3 id="c-3">C++</h3>
-<ul>
-<li>+Most popular language</li>
-<li>+Garunteed solution</li>
-<li>+Extremely fast</li>
-<li>+Good standard library</li>
-<li>-No big integers</li>
-<li>-Pain</li>
-</ul>
-</div><div class="column" style="width:33%;">
-<h3 id="java">Java</h3>
-<ul>
-<li>+Reasonable Fast (~2-10x slower than C++)</li>
-<li>+Garunteed solution</li>
-<li>+Good standard library</li>
-<li>+BigInteger class</li>
-<li>-Verbose</li>
-<li>-IO can be slow</li>
-<li>-It’s java</li>
-</ul>
-</div><div class="column" style="width:33%;">
-<h3 id="python-2">Python</h3>
-<ul>
-<li>+Easy to learn</li>
-<li>+Big integers by default</li>
-<li>-Slowwwwww (~200x to C++)</li>
-<li>-No guaranteed solution</li>
-<li>(Use PyPy 3 instead of Python 3)</li>
-</ul>
-</div>
-</div>
-</section></section>
-<section>
-<section id="complexity" class="title-slide slide level1 center">
-<h1>Complexity</h1>
-<p>FIT1008 compressed into 10 minutes</p>
-</section>
-<section id="complexity-1" class="slide level2">
-<h2>Complexity</h2>
-<p>Consider the following code:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href=""></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb9-2"><a href=""></a>    do_stuff(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>How many times does <code>do_stuff</code> run?</p>
-<div class="fragment">
-<p><span class="math inline">\(n\)</span> times</p>
-</div>
-</section>
-<section id="complexity-2" class="slide level2">
-<h2>Complexity</h2>
-<p>How about:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href=""></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb10-2"><a href=""></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb10-3"><a href=""></a>        do_stuff(i,j)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>How many times does <code>do_stuff</code> run?</p>
-<div class="fragment">
-<p><span class="math inline">\(n \times n = n^2\)</span> times</p>
-</div>
-</section>
-<section id="complexity-3" class="slide level2">
-<h2>Complexity</h2>
-<p>Finally:</p>
-<div class="sourceCode" id="cb11" data-code-line-numbers="2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb11-2"><a href=""></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i):</span>
-<span id="cb11-3"><a href=""></a>        do_stuff(i,j)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>How many times does <code>do_stuff</code> run?</p>
-<div class="fragment">
-<p><span class="math inline">\(1 + 2 + 3 + 4 + 5 + \dots + n\)</span></p>
-</div>
-<div class="fragment">
-<p><span class="math inline">\(= \frac{1}{2}n^2 + \frac{1}{2}n\)</span></p>
-</div>
-</section>
-<section id="complexity-4" class="slide level2 smaller">
-<h2>Complexity</h2>
-<p>In competitive programming, and more generally in computer science, we are <strong>usually</strong> not concerned with the specific runtime of a program. Instead we are concered with how it <strong>grows</strong>.</p>
-<div class="fragment">
-<p>For this we use <strong>Big O Notation</strong></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[\frac{1}{2}n^2 + \frac{1}{2}n = \mathcal{O}(n^2)\]</span></p>
-<p>We are only concerned with <strong>the most significant term</strong>, and we ignore <strong>constant factors</strong>.</p>
-<p>(This is a major simplification but is useful for our purposes.)</p>
-</div>
-</section>
-<section id="complexity-5" class="slide level2">
-<h2>Complexity</h2>
-<div class="columns">
-<div class="column">
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href=""></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb12-2"><a href=""></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb12-3"><a href=""></a>        do_stuff(i,j)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><span class="math inline">\(n^2 = \mathcal{O}(n^2)\)</span></p>
-</div><div class="column">
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href=""></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb13-2"><a href=""></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i_1):</span>
-<span id="cb13-3"><a href=""></a>        do_stuff(i,j)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><span class="math inline">\(\frac{1}{2}n^2 + \frac{1}{2}n = \mathcal{O}(n^2)\)</span></p>
-</div>
-</div>
-<p>Both of these have the <strong>same time complexity</strong>.</p>
-</section>
-<section id="complexity---more-examples" class="slide level2">
-<h2>Complexity - More Examples</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href=""></a><span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb14-2"><a href=""></a>    do_stuff(n)</span>
-<span id="cb14-3"><a href=""></a>    n <span class="op">=</span> n <span class="op">//</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>How many times can we divide <span class="math inline">\(n\)</span> by <span class="math inline">\(10\)</span>?</p>
-<div class="fragment">
-<p><span class="math inline">\(\log_{10}(n)\)</span></p>
-</div>
-<div class="fragment">
-<p><span class="math inline">\(= \mathcal{O}(\log n)\)</span></p>
-</div>
-</section>
-<section id="complexity---more-examples-1" class="slide level2">
-<h2>Complexity - More Examples</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href=""></a><span class="kw">def</span> f(x):</span>
-<span id="cb15-2"><a href=""></a>    <span class="cf">if</span> x <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb15-3"><a href=""></a>        do_stuff(x)</span>
-<span id="cb15-4"><a href=""></a>        <span class="cf">return</span></span>
-<span id="cb15-5"><a href=""></a></span>
-<span id="cb15-6"><a href=""></a>    do_stuff(x)</span>
-<span id="cb15-7"><a href=""></a>    f(x<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb15-8"><a href=""></a>    f(X<span class="op">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="complexity---more-examples-2" class="slide level2">
-<h2>Complexity - More Examples</h2>
-
-<img data-src="exp.png" class="r-stretch"></section>
-<section id="complexity---more-examples-3" class="slide level2">
-<h2>Complexity - More Examples</h2>
-<p><span class="math inline">\(1 + 2 + 4 + \dots + 2^n\)</span></p>
-<p><span class="math inline">\(= 2^{n+1} - 1\)</span></p>
-<p><span class="math inline">\(= 2\times 2^n - 1\)</span></p>
-<p><span class="math inline">\(=\mathcal{O}(2^n)\)</span></p>
-</section>
-<section id="complexity-and-constraints" class="slide level2 smaller">
-<h2>Complexity and Constraints</h2>
-<p>Your program must run within a <strong>certain amount of time</strong>, and with a <strong>limited amount of memory.</strong></p>
-<p><strong>Time complexity</strong> gives us a useful heuristic for how fast our algorithm has to run.</p>
-
-<img data-src="comp.png" style="width:50.0%" class="r-stretch"><p>Complexity is only a guide and <strong>constant factors do matter</strong> in <strong>certain cases</strong>.</p>
-</section></section>
-<section id="contest-time" class="title-slide slide level1 center">
-<h1>Contest Time!</h1>
+<section id="contest-time" class="slide level2">
+<h2>Contest Time!</h2>
 <p>https://vjudge.net/group/maps</p>
+<p>Problem 1 Template - (For Python, select PyPy3!!!)</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a>t <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>())</span>
+<span id="cb4-2"><a href=""></a></span>
+<span id="cb4-3"><a href=""></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(t)</span>
+<span id="cb4-4"><a href=""></a>    n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>())</span>
+<span id="cb4-5"><a href=""></a>    cells <span class="op">=</span> <span class="bu">input</span>()</span>
+<span id="cb4-6"><a href=""></a>    <span class="co"># Solve here</span></span>
+<span id="cb4-7"><a href=""></a></span>
+<span id="cb4-8"><a href=""></a>    <span class="co"># Print your answer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-auto-generated-content">
 <p><img src="maps-logotext.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>Introduction to Competitive Programming</p>
+<p>Greedy Algorithms</p>
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
