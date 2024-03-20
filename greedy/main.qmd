@@ -1,0 +1,209 @@
+---
+title: "Greedy Algorithms"
+author: "Indra Kusumah-Kasim"
+format: 
+    revealjs:
+        theme: simple
+        logo: 'maps-logotext.png'
+        footer: "Greedy Algorithms"
+        highlight-style: dracula
+        code-line-numbers: true
+---
+
+## Greedy Algorithms {.smaller}
+> A **greedy** algorithm constructs a solution to the problem by always making a choice that looks best at the moment. A greedy algorithm never takes back its choices, but directly constructs the final solution.
+
+**Greedy** does not refer to a single algorithm, but rather an approach to solving a problem.
+
+# Examples
+
+## Coin Problem {.smaller}
+Let's say with have $1$, $5$ and $10$ cent coins. What is the smallest number of coins to get a sum of $x$ cents.
+
+What is the greedy approach to this problem?
+
+. . .
+
+> Repeatedly taking the **largest coin possible.**
+
+. . .
+
+But why does this work?
+
+## Coin Problem - Proof {.smaller auto-animate="true"}
+So we want to prove that the largest coin below the target amount is the optimal choice.
+
+Let's start with the $1$ and $5$ cent coins.
+
+. . .
+
+![](1cent.webp){height="100px"}
+![](1cent.webp){height="100px"}
+![](1cent.webp){height="100px"}
+![](1cent.webp){height="100px"}
+![](1cent.webp){height="100px"}
+![](1cent.webp){height="100px"}
+
+. . .
+
+No matter what, if we have $5$ cents or more, we can replace $5$ $1$-cent coins with a $5$ cent coin to make a more optimal solution.
+
+## Coin Problem - Proof {.smaller auto-animate="true"}
+So we want to prove that the largest coin below the target amount is the optimal choice.
+
+Let's start with the $1$ and $5$ cent coins.
+
+![](5cent.webp){height="100px"}
+![](1cent.webp){height="100px"}
+
+No matter what, if we have $5$ cents or more worth of $1$-cent coins, we can replace $5$ $1$-cent coins with a $5$ cent coin to make a more optimal solution. Hence it is always more optimal to take the $5$-cent coin.
+
+## Coin Problem - Proof {.smaller auto-animate="true"}
+Now consider the $10$-cent coins.
+
+![](5cent.webp){height="100px"}
+![](1cent.webp){height="100px"}
+![](1cent.webp){height="100px"}
+![](1cent.webp){height="100px"}
+![](1cent.webp){height="100px"}
+![](1cent.webp){height="100px"}
+![](1cent.webp){height="100px"}
+
+No matter how we use $1$ and $5$-cent coins, if we have at least $10$ cents, we can replace them with a $10$-cent coin to create a more optimal soluction. Hence it is always more optimal to take a $10$-cent coin.
+
+## Coin Problem - Proof {.smaller auto-animate="true"}
+Now consider the $10$-cent coins.
+
+![](10cent.jpg){height="100px"}
+![](1cent.webp){height="100px"}
+
+No matter how we use $1$ and $5$-cent coins, if we have at least $10$ cents, we can replace them with a $10$-cent coin to create a more optimal soluction. Hence it is always more optimal to take a $10$-cent coin.
+
+## Solution - Code
+```python
+i = int(input())
+
+ans = 0
+while i != 0:
+    if i >= 10: # Take a 10-cent coin
+        i -= 10
+
+    elif i >= 5: # Take a 5-cent coin
+        i -= 5
+
+    else: # Take a 1-cent coin
+        i -= 1
+    
+    # Add 1 to the coin count
+    ans += 1
+
+print(ans)
+```
+
+## Solution - Code (Better)
+```python
+i = int(input())
+
+ans = 0
+
+ans += i // 10 # Take as many 10-cent coins as possible.
+i = i % 10
+
+ans += i // 5
+i = i % 5
+
+ans += i
+
+print(ans)
+```
+
+## Coin Problem - Extension {.smaller auto-animate="true"}
+But what if we had $1$, $5$, and $13$-cent coins?
+
+- Can we still use a greedy approach?
+- Why/why not?
+- If we can't how else can we approach this problem?
+
+## Scheduling {.smaller}
+Given $n$ events with their starting and ending times, find a schedule that includes as many events as possible without any events
+
+::: {.relative style="background: lightgray; width: 350px; margin-left: 100px; margin-right: auto;"}
+A
+:::
+::: {.relative style="background: lightgray; width: 150px; margin-left: 400px; margin-right: auto;"}
+B
+:::
+::: {.relative style="background: lightgray; width: 350px; margin-left: 450px; margin-right: auto;"}
+C
+:::
+::: {.relative style="background: lightgray; width: 250px; margin-left: 500px; margin-right: auto;"}
+D
+:::
+::: {.relative style="background: lightgray; width: 100px; margin-left: 750px; margin-right: auto;"}
+E
+:::
+
+What's a greedy approach to solving this problem?
+
+. . .
+
+We want to take the next event with the earliest end time.
+
+## Scheduling {.smaller}
+Given $n$ events with their starting and ending times, find a schedule that includes as many events as possible without any events
+
+::: {.relative style="background: gray; width: 350px; margin-left: 100px; margin-right: auto;"}
+A
+:::
+::: {.relative style="background: lightgray; width: 150px; margin-left: 400px; margin-right: auto;"}
+B
+:::
+::: {.relative style="background: lightgray; width: 350px; margin-left: 450px; margin-right: auto;"}
+C
+:::
+::: {.relative style="background: gray; width: 250px; margin-left: 500px; margin-right: auto;"}
+D
+:::
+::: {.relative style="background: gray; width: 100px; margin-left: 750px; margin-right: auto;"}
+E
+:::
+
+What's a greedy approach to solving this problem?
+
+We want to take the next event with the earliest end time.  
+
+## Scheduling - Solution
+```python
+tasks = [(1,2),(3,4)] # Skipping input.
+
+sort(tasks, key = lambda x: x[1]) # Sorting by end time.
+
+current_time = 0
+ans = 0
+
+for (start,end) in tasks: 
+
+    if (start < current_time): # Skip task if it begins before current time.
+        continue
+    
+    # Perform current task, current_time is now the end time of the task.
+    current_time = end
+    ans += 1
+    
+```
+
+## Contest Time!
+https://vjudge.net/group/maps
+
+Problem 1 Template - (For Python, select PyPy3!!!)
+```python
+t = int(input())
+
+for _ in range(t)
+    n = int(input())
+    cells = input()
+    # Solve here
+
+    # Print your answer
+```
+

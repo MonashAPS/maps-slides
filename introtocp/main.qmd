@@ -171,6 +171,7 @@ Will this work?
 - +Big integers by default
 - -Slowwwwww (~200x to C++)
 - -No guaranteed solution
+- (Use PyPy 3 instead of Python 3)
 :::
 ::::
 
@@ -202,7 +203,7 @@ How many times does `do_stuff` run?
 
 . . .
 
-$n \times n = n$ times
+$n \times n = n^2$ times
 
 ## Complexity
 Finally:
@@ -308,3 +309,6 @@ Your program must run within a **certain amount of time**, and with a **limited 
 ![](comp.png){width="50%"}
 
 Complexity is only a guide and **constant factors do matter** in **certain cases**.
+
+# Contest Time!
+https://vjudge.net/group/maps
