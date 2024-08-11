@@ -8,7 +8,7 @@
 <link href="main_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="main_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="main_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.550">
+  <meta name="generator" content="quarto-1.5.55">
 
   <meta name="author" content="Indra Kusumah-Kasim">
   <title>Greedy Algorithms</title>
@@ -42,7 +42,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -471,7 +471,7 @@ Indra Kusumah-Kasim
 <span id="cb1-10"><a href=""></a></span>
 <span id="cb1-11"><a href=""></a>    <span class="cf">else</span>: <span class="co"># Take a 1-cent coin</span></span>
 <span id="cb1-12"><a href=""></a>        i <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb1-13"><a href=""></a>    </span>
+<span id="cb1-13"><a href=""></a></span>
 <span id="cb1-14"><a href=""></a>    <span class="co"># Add 1 to the coin count</span></span>
 <span id="cb1-15"><a href=""></a>    ans <span class="op">+=</span> <span class="dv">1</span></span>
 <span id="cb1-16"><a href=""></a></span>
@@ -555,15 +555,14 @@ Indra Kusumah-Kasim
 <span id="cb3-5"><a href=""></a>current_time <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb3-6"><a href=""></a>ans <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb3-7"><a href=""></a></span>
-<span id="cb3-8"><a href=""></a><span class="cf">for</span> (start,end) <span class="kw">in</span> tasks: </span>
+<span id="cb3-8"><a href=""></a><span class="cf">for</span> (start,end) <span class="kw">in</span> tasks:</span>
 <span id="cb3-9"><a href=""></a></span>
 <span id="cb3-10"><a href=""></a>    <span class="cf">if</span> (start <span class="op">&lt;</span> current_time): <span class="co"># Skip task if it begins before current time.</span></span>
 <span id="cb3-11"><a href=""></a>        <span class="cf">continue</span></span>
-<span id="cb3-12"><a href=""></a>    </span>
+<span id="cb3-12"><a href=""></a></span>
 <span id="cb3-13"><a href=""></a>    <span class="co"># Perform current task, current_time is now the end time of the task.</span></span>
 <span id="cb3-14"><a href=""></a>    current_time <span class="op">=</span> end</span>
-<span id="cb3-15"><a href=""></a>    ans <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb3-16"><a href=""></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-15"><a href=""></a>    ans <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="contest-time" class="slide level2">
 <h2>Contest Time!</h2>
@@ -826,18 +825,7 @@ Indra Kusumah-Kasim
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -869,7 +857,47 @@ Indra Kusumah-Kasim
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
@@ -906,7 +934,11 @@ Indra Kusumah-Kasim
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {

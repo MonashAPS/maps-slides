@@ -1,0 +1,431 @@
+---
+title: "Games Problem Sheet"
+format:
+    pdf:
+        number-sections: true
+---
+
+\newcommand{\chilli}{\fontspec{Symbola}\color{red}🌶\color{black}\fontspec{Calibri}}
+\fontspec{Calibri}
+
+# Preface {.unnumbered}
+
+This problem set is longer and more difficult than is probably reasonable for a problem set.
+
+The idea is that there are some easy problems, but if you're intrigued by certain elements of this workshop, then there are questions there to pique your interest.
+
+Problems preceded by more \chilli s are more difficult.
+
+# Hackenbush Hijinks
+
+## Hackenbush Strategies
+
+1. \chilli Figure out for each of the following games, whether the winning strategy ensures a win for the 1st, 2nd, Blue or Red player:
+
+::: {layout="[[0.25, 0.25, 0.25, 0.25]]"}
+
+:::: {#first}
+```{dot}
+//| fig-width: 3
+//| fig-height: 1.2
+graph H {
+    layout=neato
+    L [label="", pos="-1,0!", shape=point]
+    R [label="", pos="1,0!", shape=point]
+    L -- R
+
+    B1 [pos="-1,0!", shape=point]
+    B2 [pos="0,0!", shape=point]
+    B3 [pos="1,0!", shape=point]
+    M1 [pos="-1,1!", shape=point]
+    M2 [pos="0,1!", shape=point]
+    M3 [pos="1,1!", shape=point]
+    T1 [pos="-1.5,2!", shape=point]
+    T2 [pos="-0.5,2!", shape=point]
+    T3 [pos="0.5,2!", shape=point]
+    T4 [pos="1.5,2!", shape=point]
+    E1 [pos="1,3!", shape=point]
+    E2 [pos="2,3!", shape=point]
+
+    B1 -- M1 [penwidth=3, color="#457b9d"]
+    B2 -- M2 [penwidth=3, color="#e63946"]
+    B3 -- M3 [penwidth=3, color="#e63946"]
+
+    T1 -- M1 -- T2 -- M2 [penwidth=3, color="#457b9d"]
+    T2 -- T3 [penwidth=3, color="#457b9d"]
+    M3 -- T4 [penwidth=3, color="#457b9d"]
+
+    M2 -- T3 -- M3 [penwidth=3, color="#e63946"]
+    E1 -- T4 -- E2 [penwidth=3, color="#e63946"]
+}
+```
+::::
+
+:::: {#second}
+```{dot}
+//| fig-width: 3
+//| fig-height: 1.2
+graph H {
+    layout=neato
+    L [label="", pos="-1,0!", shape=point]
+    R [label="", pos="1,0!", shape=point]
+    L -- R
+
+    B [pos="0,0!", shape=point]
+    T [pos="0,1!", shape=point]
+    AL [pos="-0.5,1!", shape=point]
+    AT [pos="0,1.5!", shape=point]
+    AR [pos="0.5,1!", shape=point]
+
+    B -- T [penwidth=3, color="#8ac926"]
+    T -- AL -- T [penwidth=3, color="#457b9d"]
+    T -- AT -- T [penwidth=3, color="#e63946"]
+    T -- AR -- T [penwidth=3, color="#457b9d"]
+}
+```
+::::
+
+:::: {#third}
+```{dot}
+//| fig-width: 3
+//| fig-height: 1.2
+graph H {
+    layout=neato
+    L [label="", pos="-1,0!", shape=point]
+    R [label="", pos="1,0!", shape=point]
+    L -- R
+
+    P1LEFTLEG [pos="-1,0!", shape=point]
+    P1RIGHTLEG [pos="-0.75,0!", shape=point]
+    P1WAIST [pos="-0.8,0.5!", shape=point]
+    P1NECK [pos="-0.5, 1!", shape=point]
+    P1HEAD [pos="-0.25, 1.3!", shape=point]
+    P1TOPELBOW [pos="-0.4,1.7!", shape=point]
+    TOPARM [pos="0,2!", shape=point]
+    BOTARM [pos="0,1.2!", shape=point]
+
+    P1LEFTLEG -- P1WAIST -- P1RIGHTLEG [penwidth=3, color="#457b9d"]
+    P1WAIST -- P1NECK [penwidth=3, color="#457b9d"]
+    P1NECK -- P1TOPELBOW -- TOPARM [penwidth=3, color="#8ac926"]
+    P1NECK -- BOTARM [penwidth=3, color="#8ac926"]
+    P1HEAD -- P1NECK -- P1HEAD [penwidth=3, color="#8ac926"]
+
+    P2LEFTLEG [pos="1,0!", shape=point]
+    P2RIGHTLEG [pos="0.75,0!", shape=point]
+    P2WAIST [pos="0.8,0.5!", shape=point]
+    P2NECK [pos="0.5, 1!", shape=point]
+    P2HEAD [pos="0.25, 1.3!", shape=point]
+    P2TOPELBOW [pos="0.4,1.7!", shape=point]
+
+    P2LEFTLEG -- P2WAIST -- P2RIGHTLEG [penwidth=3, color="#e63946"]
+    P2WAIST -- P2NECK [penwidth=3, color="#e63946"]
+    P2NECK -- P2TOPELBOW -- TOPARM [penwidth=3, color="#8ac926"]
+    P2NECK -- BOTARM [penwidth=3, color="#8ac926"]
+    P2HEAD -- P2NECK -- P2HEAD [penwidth=3, color="#8ac926"]
+}
+```
+::::
+
+:::: {#fourth}
+```{dot}
+//| fig-width: 3
+//| fig-height: 1.2
+graph H {
+    layout=neato
+    L [label="", pos="-1,0!", shape=point]
+    R [label="", pos="1,0!", shape=point]
+    L -- R
+
+    B1 [pos="-1,0!", shape=point]
+    B2 [pos="-0.33,0!", shape=point]
+    B3 [pos="0.33,0!", shape=point]
+    B4 [pos="1,0!", shape=point]
+
+    T1 [pos="-1,0.5!", shape=point]
+    T2 [pos="-0.33,0.5!", shape=point]
+    T3 [pos="0.33,0.5!", shape=point]
+    T4 [pos="1,0.5!", shape=point]
+
+    X1 [pos="-0.5,0.75!", shape=point]
+    X2 [pos="-0.16,0.75!", shape=point]
+    X3 [pos="0.16,0.75!", shape=point]
+    X4 [pos="0.5,0.75!", shape=point]
+
+    M1 [pos="-1,1.5!", shape=point]
+    M2 [pos="0,1.5!", shape=point]
+    M3 [pos="1,1.5!", shape=point]
+
+    M [pos="0, 2!", shape=point]
+
+    B1 -- T1 [penwidth=3, color="#e63946"]
+    B2 -- T2 [penwidth=3, color="#457b9d"]
+    B3 -- T3 [penwidth=3, color="#e63946"]
+    B4 -- T4 [penwidth=3, color="#e63946"]
+
+    M1 -- T1 -- M2 -- T4 -- M3 [penwidth=3, color="#457b9d"]
+    M1 -- M2 -- M3 [penwidth=3, color="#457b9d"]
+    M1 -- M -- M2 [penwidth=3, color="#457b9d"]
+    M -- M3 [penwidth=3, color="#457b9d"]
+
+    X1 -- T2 -- X2 [penwidth=3, color="#457b9d"]
+    X3 -- T3 -- X4 [penwidth=3, color="#e63946"]
+
+}
+```
+::::
+
+:::
+
+2. \chilli Prove that $a + (-a) = 0$. In other words, for any hackenbush game which has two copies, one with the red/blue edges flipped, that there is a strategy for the 2nd player to win.
+
+3. \chilli \chilli Prove the following statements about games with values $X$, $Y$ and $Z$. From this, you can deduce that all 2nd player winning games are equivalent, in that they have no effect on play. So equating them to zero is reasonable.
+
+- If $X$ has a strategy for the 2nd player to win, and $Y$ has a strategy for the 2nd player to win, then $Z = X + Y$ has a strategy for the 2nd player to win.
+- If $X$ has a strategy for the 2nd player to win, and $Y$ has a strategy for the 1st player to win, then $Z = X + Y$ has a strategy for the 1st player to win.
+- If $X$ has a strategy for the 2nd player to win, and $Y$ has a strategy for the Blue player to win, then $Z = X + Y$ has a strategy for the Blue player to win.
+- If $X$ has a strategy for the 2nd player to win, and $Y$ has a strategy for the Red player to win, then $Z = X + Y$ has a strategy for the Red player to win.
+
+4. \chilli Evaluate the following position, and use this to formulate an equation involving $*, *2$ and $*3$
+
+```{dot}
+//| fig-width: 4
+//| fig-height: 1.5
+//| fig-align: center
+//| label: fig-nimber
+graph H {
+    layout=neato
+    L [label="", pos="-1,0!", shape=point]
+    R [label="", pos="1,0!", shape=point]
+    L -- R
+
+    L [pos="-0.5,0!", shape=point]
+    L1 [pos="-0.5,0.5!", shape=point]
+    L -- L1 [penwidth=3, color="#8ac926"]
+    M [pos="0,0!", shape=point]
+    M1 [pos="0,0.5!", shape=point]
+    M2 [pos="0,1!", shape=point]
+    M -- M1 -- M2 [penwidth=3, color="#8ac926"]
+    R [pos="0.5,0!", shape=point]
+    R1 [pos="0.5,0.5!", shape=point]
+    R2 [pos="0.5,1!", shape=point]
+    R3 [pos="0.5,1.5!", shape=point]
+    R -- R1 -- R2 -- R3 [penwidth=3, color="#8ac926"]
+}
+```
+
+## Evaluating Positions
+
+5. \chilli Create Hackenbush positions with the following values:
+
+- $3 + \frac{1}{4}$
+- $\frac{1}{8}$
+- $-\frac{15}{16}$
+- $2 + * + *3$
+
+6. \chilli \chilli Evaluate the following hackenbush positions by comparing them to known games (are they less than game $X$, greater than game $Y$?)
+
+::: {layout="[[0.5, 0.5]]"}
+
+:::: {#first}
+```{dot}
+//| fig-width: 3
+//| fig-height: 1.2
+graph H {
+    layout=neato
+    L [label="", pos="-1,0!", shape=point]
+    R [label="", pos="1,0!", shape=point]
+    L -- R
+
+    B1 [pos="-0.5,0!", shape=point]
+    B2 [pos="0.5,0!", shape=point]
+    T1 [pos="-0.5,0.5!", shape=point]
+    T2 [pos="0.5,0.5!", shape=point]
+    M  [pos="0,1!", shape=point]
+
+    B1 -- T1 [penwidth=3, color="#e63946"]
+    B2 -- T2 [penwidth=3, color="#e63946"]
+    T1 -- T2 -- M -- T1 [penwidth=3, color="#457b9d"]
+}
+```
+::::
+
+:::: {#second}
+```{dot}
+//| fig-width: 3
+//| fig-height: 1.2
+graph H {
+    layout=neato
+    L [label="", pos="-1,0!", shape=point]
+    R [label="", pos="1,0!", shape=point]
+    L -- R
+
+    B1 [pos="-0.5,0!", shape=point]
+    B2 [pos="0.5,0!", shape=point]
+    T1 [pos="-0.5,0.5!", shape=point]
+    T2 [pos="0.5,0.5!", shape=point]
+    M  [pos="0,1!", shape=point]
+    M2 [pos="0,1.5!", shape=point]
+
+    B1 -- T1 [penwidth=3, color="#457b9d"]
+    B2 -- T2 [penwidth=3, color="#457b9d"]
+    T2 -- M -- T1 [penwidth=3, color="#e63946"]
+    M -- M2 [penwidth=3, color="#457b9d"]
+}
+```
+::::
+:::
+
+7. \chilli \chilli From the final slide we saw that some fuzzy games, when combined, produce non-fuzzy, positive/negative results. Evaluate the following positions as positive, negative, zero, or fuzzy.
+
+**TODO:** Games
+
+8. \chilli \chilli Prove that the flower petal position plus $*$, is positive, but less than every positive number generated in blue-red hackenbush
+
+
+# Treasure Trove of Numbers
+
+## Treasure
+
+1. \chilli Create Treasure games with the following values:
+
+* $\frac{5}{4}$
+* $\Uparrow$
+* $\omega$
+* $\omega + \omega$
+
+2. \chilli \chilli Prove that any formulation of bracket notation (purely built up from $\{|\}$) can be expressed as a game of Treasure.
+
+3. \chilli \chilli \chilli Provide an algorithm to combine two Treasure games $A$ and $B$ into a single game with value $A + B$.
+
+## A bracing garden
+
+4. \chilli \chilli Evaluate the following hackenbush positions by recursively evaluating their left/right options in the brace notation.
+
+Remember to use the rule of $X = \{a, b, c|d, e, f\}$ satisfying $a, b, c < X < d, e, f$, when $a$ through $f$ are real numbers, and $X$ being the simplest possible solution.
+
+::: {layout="[[0.5, 0.5]]"}
+
+:::: {#first}
+```{dot}
+//| fig-width: 3
+//| fig-height: 1.2
+graph H {
+    layout=neato
+    L [label="", pos="-1,0!", shape=point]
+    R [label="", pos="1,0!", shape=point]
+    L -- R
+
+    B1 [pos="-0.5,0!", shape=point]
+    B2 [pos="0.5,0!", shape=point]
+    T1 [pos="-0.5,0.5!", shape=point]
+    T2 [pos="0.5,0.5!", shape=point]
+    M  [pos="0,1!", shape=point]
+
+    B1 -- T1 [penwidth=3, color="#e63946"]
+    B2 -- T2 [penwidth=3, color="#e63946"]
+    T1 -- T2 -- M -- T1 [penwidth=3, color="#457b9d"]
+}
+```
+::::
+
+:::: {#second}
+```{dot}
+//| fig-width: 3
+//| fig-height: 1.2
+graph H {
+    layout=neato
+    L [label="", pos="-1,0!", shape=point]
+    R [label="", pos="1,0!", shape=point]
+    L -- R
+
+    B1 [pos="-0.5,0!", shape=point]
+    B2 [pos="0.5,0!", shape=point]
+    T1 [pos="-0.5,0.5!", shape=point]
+    T2 [pos="0.5,0.5!", shape=point]
+    M  [pos="0,1!", shape=point]
+    M2 [pos="0,1.5!", shape=point]
+
+    B1 -- T1 [penwidth=3, color="#457b9d"]
+    B2 -- T2 [penwidth=3, color="#457b9d"]
+    T2 -- M -- T1 [penwidth=3, color="#e63946"]
+    M -- M2 [penwidth=3, color="#457b9d"]
+}
+```
+::::
+:::
+
+5. \chilli \chilli Let's revisit the flower petal example. If $X$ is the single petal flower, prove that $X = \uparrow *$. You may need to compare $X$ with $\uparrow, 0, *$.
+
+6. \chilli \chilli \chilli If $Y$ is the double petal flower, prove that $\uparrow * < Y < \Uparrow *$, $Y || \uparrow$ and $Y || \Uparrow$
+
+## Nimbers
+
+Now that we've got some nice notation to hand we can do some more complicated problems on simple numbers. For the next for problems, we'll use the formulation of nimbers:
+
+$$
+0 = \{|\}, * = \{0|0\}, *2 = \{0, *|0, *\}, *3 = \{0, *, *2|0, *, *2\}
+$$
+
+7. \chilli Prove the following facts about Nimbers:
+
+a. Prove that $*a$ is it's own negative for every positive integer $a$, in other words, show that $*a + *a = 0$ .
+
+b. Prove that $* + *4 + *5 = 0$
+
+8. \chilli \chilli A super neat tool with identifying nimber games is the following rule:
+
+If $X = \{a, b, c, \ldots|a, b, c, \ldots\}$, and $a, b, c, \ldots$ are all nimbers, then the value of $X$ is simply the smallest nimber not found in $a, b, c, \ldots$. (Here 0 is counted as the first nimber).
+
+For example, $\{0, *, *2, *4, *7, *8|0, *, *2, *4, *7, *8\}$ has value $*3$, because that is the smallest excluded nimber. We can prove this by induction, fill in the following steps in logic:
+
+a. Prove the statement holds when $X = 0$ (When $a, b, c, \ldots$ does not contain $0$, then $X = 0$)
+b. Suppose that the statement holds when $X = *a$ for all $0 \leq a < N$. Prove the statement holds when $X = *n$.
+
+9. \chilli \chilli \chilli The factoid in the previous problem lets us generate a table of nimber additions in a rather neat manner: We simply look at all nimber values in the row/column before what we are computing, then find the minimal excluded value (why does this work?).
+
+![](box-nim-compute.png)
+
+Prove that the Exclusive OR (XOR) function on natural numbers follows this same rule.
+
+## Omega Flower, Sans Undergrowth
+
+10. \chilli Have a think about what the value $\frac{1}{\omega}$ would look like in bracket notation and draw it in hackenbush, and in treasure. Prove that $\omega + 1 > \omega + \frac{1}{\omega} > \omega$
+
+11. \chilli Let's think about the hackenbush positions with an infinite amount of blue stems touching the ground (Kind of like if you put $\omega$ through a shredder). Call this game 'on'. What is the bracket notation of 'on'?
+
+# The Effect of Dominoes
+
+** TODO **
+
+## Full Game
+
+Figure out the total value of this game of domineering. Determine the first move that should be made by the winning side.
+
+```{dot}
+//| fig-width: 3.5
+//| fig-height: 3.5
+graph H {
+    layout=neato
+
+    B [label="", pos="0,0!", shape=box, width=6, height=6]
+    C1 [label="", pos="-1.5,0!", shape=box, width=1, height=6]
+    C2 [label="", pos="1.5,0!", shape=box, width=1, height=6]
+    C3 [label="", pos="0.5,0!", shape=box, width=1, height=6]
+    R1 [label="", pos="0,-1.5!", shape=box, width=6, height=1]
+    R2 [label="", pos="0,1.5!", shape=box, width=6, height=1]
+    R3 [label="", pos="0,0.5!", shape=box, width=6, height=1]
+
+    V1 [label="", pos="-1.5,1!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V2 [label="", pos="1.5,1!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V3 [label="", pos="-2.5,-1!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V4 [label="", pos="2.5,-1!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+
+    H1 [label="", pos="0, 2.5!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H2 [label="", pos="-1, -0.5!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H3 [label="", pos="1, -0.5!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H4 [label="", pos="1, -1.5!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H5 [label="", pos="2, -2.5!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+}
+```
+
+

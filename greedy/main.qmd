@@ -1,7 +1,7 @@
 ---
 title: "Greedy Algorithms"
 author: "Indra Kusumah-Kasim"
-format: 
+format:
     revealjs:
         theme: simple
         logo: 'maps-logotext.png'
@@ -93,7 +93,7 @@ while i != 0:
 
     else: # Take a 1-cent coin
         i -= 1
-    
+
     # Add 1 to the coin count
     ans += 1
 
@@ -170,7 +170,7 @@ E
 
 What's a greedy approach to solving this problem?
 
-We want to take the next event with the earliest end time.  
+We want to take the next event with the earliest end time.
 
 ## Scheduling - Solution
 ```python
@@ -181,15 +181,15 @@ sort(tasks, key = lambda x: x[1]) # Sorting by end time.
 current_time = 0
 ans = 0
 
-for (start,end) in tasks: 
+for (start,end) in tasks:
 
     if (start < current_time): # Skip task if it begins before current time.
         continue
-    
+
     # Perform current task, current_time is now the end time of the task.
     current_time = end
     ans += 1
-    
+
 ```
 
 ## Contest Time!
