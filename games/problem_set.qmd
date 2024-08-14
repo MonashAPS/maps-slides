@@ -395,7 +395,34 @@ Prove that the Exclusive OR (XOR) function on natural numbers follows this same 
 
 # The Effect of Dominoes
 
-** TODO **
+## Dominoes
+
+1. \chilli Figure out the total value of the following games and where blue/red might place their piece first.
+
+**TODO**
+
+2. \chilli Find the values of the following generic shapes:
+
+a. The $1 \times c$ row
+b. The $r \times 1$ column
+c. \chilli \chilli The 'L' shape with a height of $h$ and width of $w$.
+d. \chilli \chilli The hollow rectangle of height $h$ and width $w$.
+
+## Switches
+
+3. \chilli TODO
+
+4. \chilli \chilli By adding only switches ($\pm a$), make this game have a purely positive / negative value. What is this value?
+
+$$
+\{ -3 | 1 \} + \left\{0 \bigg| \frac{1}{2}\right\} + \{-3* | -2* \} + \{*2 | *2\} + \{0, * | 0, *\}
+$$
+
+## Up Miny Down Tiny
+
+5. \chilli \chilli Prove that $+_\uparrow || *2$
+
+6. \chilli \chilli \chilli Prove that for any positive fraction $a$ and integer $b$, and integer $c \geq 2$, that $+_{a + b \cdot \uparrow} || *c$ if and only if $+_{a + b \cdot \uparrow} || *2$
 
 ## Full Game
 
