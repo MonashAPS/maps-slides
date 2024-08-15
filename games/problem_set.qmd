@@ -185,7 +185,7 @@ graph H {
 - If $X$ has a strategy for the 2nd player to win, and $Y$ has a strategy for the Blue player to win, then $Z = X + Y$ has a strategy for the Blue player to win.
 - If $X$ has a strategy for the 2nd player to win, and $Y$ has a strategy for the Red player to win, then $Z = X + Y$ has a strategy for the Red player to win.
 
-4. \chilli Evaluate the following position, and use this to formulate an equation involving $*, *2$ and $*3$
+4. \chilli Evaluate the following position, and use this to formulate an equation involving $*, *_2$ and $*_3$
 
 ```{dot}
 //| fig-width: 4
@@ -220,7 +220,7 @@ graph H {
 - $3 + \frac{1}{4}$
 - $\frac{1}{8}$
 - $-\frac{15}{16}$
-- $2 + * + *3$
+- $2 + * + *_3$
 
 6. \chilli \chilli Evaluate the following hackenbush positions by comparing them to known games (are they less than game $X$, greater than game $Y$?)
 
@@ -363,23 +363,23 @@ graph H {
 Now that we've got some nice notation to hand we can do some more complicated problems on simple numbers. For the next for problems, we'll use the formulation of nimbers:
 
 $$
-0 = \{|\}, * = \{0|0\}, *2 = \{0, *|0, *\}, *3 = \{0, *, *2|0, *, *2\}
+0 = \{|\}, * = \{0|0\}, *_2 = \{0, *|0, *\}, *_3 = \{0, *, *_2|0, *, *_2\}
 $$
 
 7. \chilli Prove the following facts about Nimbers:
 
-a. Prove that $*a$ is it's own negative for every positive integer $a$, in other words, show that $*a + *a = 0$ .
+a. Prove that $*_a$ is it's own negative for every positive integer $a$, in other words, show that $*_a + *_a = 0$ .
 
-b. Prove that $* + *4 + *5 = 0$
+b. Prove that $* + *_4 + *_5 = 0$
 
 8. \chilli \chilli A super neat tool with identifying nimber games is the following rule:
 
 If $X = \{a, b, c, \ldots|a, b, c, \ldots\}$, and $a, b, c, \ldots$ are all nimbers, then the value of $X$ is simply the smallest nimber not found in $a, b, c, \ldots$. (Here 0 is counted as the first nimber).
 
-For example, $\{0, *, *2, *4, *7, *8|0, *, *2, *4, *7, *8\}$ has value $*3$, because that is the smallest excluded nimber. We can prove this by induction, fill in the following steps in logic:
+For example, $\{0, *, *_2, *_4, *_7, *_8|0, *, *_2, *_4, *_7, *_8\}$ has value $*_3$, because that is the smallest excluded nimber. We can prove this by induction, fill in the following steps in logic:
 
 a. Prove the statement holds when $X = 0$ (When $a, b, c, \ldots$ does not contain $0$, then $X = 0$)
-b. Suppose that the statement holds when $X = *a$ for all $0 \leq a < N$. Prove the statement holds when $X = *n$.
+b. Suppose that the statement holds when $X = *_a$ for all $0 \leq a < N$. Prove the statement holds when $X = *_n$.
 
 9. \chilli \chilli \chilli The factoid in the previous problem lets us generate a table of nimber additions in a rather neat manner: We simply look at all nimber values in the row/column before what we are computing, then find the minimal excluded value (why does this work?).
 
