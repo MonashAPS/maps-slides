@@ -281,6 +281,11 @@ graph H {
 
 8. \chilli \chilli Prove that the flower petal position plus $*$, is positive, but less than every positive number generated in blue-red hackenbush
 
+9. Prove or Disprove the following statements, by coming up with a winning strategy, or giving a game example:
+
+a. If $X = Y$ and $Y = Z$ then $X = Z$
+b. If $X > Y$ and $Y > Z$ then $X > Z$
+c. If $X||Y$ and $Y||Z$ then $X||Z$
 
 # Treasure Trove of Numbers
 
@@ -410,7 +415,11 @@ d. \chilli \chilli The hollow rectangle of height $h$ and width $w$.
 
 ## Switches
 
-3. \chilli TODO
+3. \chilli Create games with the following properties:
+
+a. $X || -3, X || -2, X < -4,, X > -1$
+b. $X || 2, X || -2 + \frac{1}{\omega}, X > -2, X < 2 + \frac{1}{\Uparrow}$
+c. $\uparrow < X < \Uparrow$
 
 4. \chilli \chilli By adding only switches ($\pm a$), make this game have a purely positive / negative value. What is this value?
 
@@ -426,7 +435,7 @@ $$
 
 ## Full Game
 
-Figure out the total value of this game of domineering. Determine the first move that should be made by the winning side.
+7. Figure out the total value of this game of domineering. Determine the first move that should be made by the winning side.
 
 ```{dot}
 //| fig-width: 3.5
