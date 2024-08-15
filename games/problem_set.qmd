@@ -3,6 +3,8 @@ title: "Games Problem Sheet"
 format:
     pdf:
         number-sections: true
+        margin-top: 30pt
+        margin-bottom: 70pt
 ---
 
 \newcommand{\chilli}{\fontspec{Symbola}\color{red}🌶\color{black}\fontspec{Calibri}}
@@ -185,6 +187,8 @@ graph H {
 - If $X$ has a strategy for the 2nd player to win, and $Y$ has a strategy for the Blue player to win, then $Z = X + Y$ has a strategy for the Blue player to win.
 - If $X$ has a strategy for the 2nd player to win, and $Y$ has a strategy for the Red player to win, then $Z = X + Y$ has a strategy for the Red player to win.
 
+{{< pagebreak >}}
+
 4. \chilli Evaluate the following position, and use this to formulate an equation involving $*, *_2$ and $*_3$
 
 ```{dot}
@@ -275,17 +279,15 @@ graph H {
 ::::
 :::
 
-7. \chilli \chilli From the final slide we saw that some fuzzy games, when combined, produce non-fuzzy, positive/negative results. Evaluate the following positions as positive, negative, zero, or fuzzy.
+7. \chilli \chilli Prove that the flower petal position plus $*$, is positive, but less than every positive number generated in blue-red hackenbush
 
-**TODO:** Games
-
-8. \chilli \chilli Prove that the flower petal position plus $*$, is positive, but less than every positive number generated in blue-red hackenbush
-
-9. Prove or Disprove the following statements, by coming up with a winning strategy, or giving a game example:
+8. \chilli \chilli Prove or Disprove the following statements, by coming up with a winning strategy, or giving a game example:
 
 a. If $X = Y$ and $Y = Z$ then $X = Z$
 b. If $X > Y$ and $Y > Z$ then $X > Z$
 c. If $X||Y$ and $Y||Z$ then $X||Z$
+
+{{< pagebreak >}}
 
 # Treasure Trove of Numbers
 
@@ -373,9 +375,11 @@ $$
 
 7. \chilli Prove the following facts about Nimbers:
 
-a. Prove that $*_a$ is it's own negative for every positive integer $a$, in other words, show that $*_a + *_a = 0$ .
+a. Prove that $*_a$ is it's own negative for every positive integer $a$, in other words, show that $*_a + *_a = 0$
 
 b. Prove that $* + *_4 + *_5 = 0$
+
+{{< pagebreak >}}
 
 8. \chilli \chilli A super neat tool with identifying nimber games is the following rule:
 
@@ -398,48 +402,22 @@ Prove that the Exclusive OR (XOR) function on natural numbers follows this same 
 
 11. \chilli Let's think about the hackenbush positions with an infinite amount of blue stems touching the ground (Kind of like if you put $\omega$ through a shredder). Call this game 'on'. What is the bracket notation of 'on'?
 
+{{< pagebreak >}}
+
 # The Effect of Dominoes
 
 ## Dominoes
 
-1. \chilli Figure out the total value of the following games and where blue/red might place their piece first.
+1. \chilli \chilli Figure out the total value of the following games and where blue/red might place their piece first.
 
-**TODO**
-
-2. \chilli Find the values of the following generic shapes:
-
-a. The $1 \times c$ row
-b. The $r \times 1$ column
-c. \chilli \chilli The 'L' shape with a height of $h$ and width of $w$.
-d. \chilli \chilli The hollow rectangle of height $h$ and width $w$.
-
-## Switches
-
-3. \chilli Create games with the following properties:
-
-a. $X || -3, X || -2, X < -4,, X > -1$
-b. $X || 2, X || -2 + \frac{1}{\omega}, X > -2, X < 2 + \frac{1}{\Uparrow}$
-c. $\uparrow < X < \Uparrow$
-
-4. \chilli \chilli By adding only switches ($\pm a$), make this game have a purely positive / negative value. What is this value?
-
-$$
-\{ -3 | 1 \} + \left\{0 \bigg| \frac{1}{2}\right\} + \{-3* | -2* \} + \{*2 | *2\} + \{0, * | 0, *\}
-$$
-
-## Up Miny Down Tiny
-
-5. \chilli \chilli Prove that $+_\uparrow || *2$
-
-6. \chilli \chilli \chilli Prove that for any positive fraction $a$ and integer $b$, and integer $c \geq 2$, that $+_{a + b \cdot \uparrow} || *c$ if and only if $+_{a + b \cdot \uparrow} || *2$
-
-## Full Game
-
-7. Figure out the total value of this game of domineering. Determine the first move that should be made by the winning side.
-
+::: {layout="[[0.25, 0.5, 0.25]]"}
+:::: {#spacer-1}
+$\ $
+::::
+:::: {#actual-block}
 ```{dot}
-//| fig-width: 3.5
-//| fig-height: 3.5
+//| fig-width: 2.5
+//| fig-height: 2.5
 graph H {
     layout=neato
 
@@ -463,5 +441,131 @@ graph H {
     H5 [label="", pos="2, -2.5!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
 }
 ```
+::::
+:::: {#spacer-2}
+$\ $
+::::
+:::
 
+::: {layout="[[0.5, 0.5]]"}
+:::: {#first-domino}
+```{dot}
+//| fig-width: 2.5
+//| fig-height: 2
+graph H {
+    layout=neato
+
+    B [label="", pos="0,0!", shape=box, width=9, height=7]
+    C1 [label="", pos="-3,0!", shape=box, width=1, height=7]
+    C2 [label="", pos="-1,0!", shape=box, width=1, height=7]
+    C3 [label="", pos="1,0!", shape=box, width=1, height=7]
+    C4 [label="", pos="3,0!", shape=box, width=1, height=7]
+    R1 [label="", pos="0,-2!", shape=box, width=9, height=1]
+    R2 [label="", pos="0,0!", shape=box, width=9, height=1]
+    R3 [label="", pos="0,2!", shape=box, width=9, height=1]
+
+    V1 [label="", pos="-2,2.5!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V2 [label="", pos="1,1.5!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V3 [label="", pos="4,1.5!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V4 [label="", pos="-3,0.5!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V5 [label="", pos="-3,-1.5!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V6 [label="", pos="1,-1.5!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V7 [label="", pos="4,-1.5!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V8 [label="", pos="-2,-2.5!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+
+    H1 [label="", pos="-3.5, 3!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H2 [label="", pos="3.5, 3!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H3 [label="", pos="-0.5, 2!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H4 [label="", pos="2.5, 2!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H5 [label="", pos="-0.5, 0!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H6 [label="", pos="3.5, 0!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H7 [label="", pos="-0.5, -2!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H8 [label="", pos="2.5, -2!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H9 [label="", pos="1.5, -3!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+
+}
+```
+::::
+:::: {#second-domino}
+```{dot}
+//| fig-width: 2.5
+//| fig-height: 2
+graph H {
+    layout=neato
+
+    B [label="", pos="0,0!", shape=box, width=9, height=7]
+    C1 [label="", pos="-3,0!", shape=box, width=1, height=7]
+    C2 [label="", pos="-1,0!", shape=box, width=1, height=7]
+    C3 [label="", pos="1,0!", shape=box, width=1, height=7]
+    C4 [label="", pos="3,0!", shape=box, width=1, height=7]
+    R1 [label="", pos="0,-2!", shape=box, width=9, height=1]
+    R2 [label="", pos="0,0!", shape=box, width=9, height=1]
+    R3 [label="", pos="0,2!", shape=box, width=9, height=1]
+
+    V1 [label="", pos="-2,2.5!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V2 [label="", pos="2,2.5!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V3 [label="", pos="3,1.5!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V4 [label="", pos="4,0.5!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V5 [label="", pos="2,-0.5!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+    V6 [label="", pos="-2,-0.5!", shape=box, width=1, height=2, style=filled, fillcolor="#457b9d"]
+
+    H1 [label="", pos="-0.5, 2!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H2 [label="", pos="-3.5, 1!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H3 [label="", pos="1.5, 1!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H4 [label="", pos="0.5, -1!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H5 [label="", pos="3.5, -1!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H6 [label="", pos="0.5, -2!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H7 [label="", pos="-1.5, -2!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+    H8 [label="", pos="-1.5, -3!", shape=box, width=2, height=1, style=filled, fillcolor="#e63946"]
+}
+```
+::::
+:::
+
+2. \chilli Find the values of the following generic shapes:
+
+a. The $1 \times c$ row
+b. The $r \times 1$ column
+c. \chilli \chilli The 'L' shape with a height of $h$ and width of $w$.
+d. \chilli \chilli The hollow rectangle of height $h$ and width $w$.
+
+## Switches
+
+3. \chilli Create games with the following properties:
+
+a. $X || -3, X || -2, X < -4,, X > -1$
+b. $X || 2, X || -2 + \frac{1}{\omega}, X > -2, X < 2 + \frac{1}{\Uparrow}$
+c. $\uparrow < X < \Uparrow$
+
+{{< pagebreak >}}
+
+4. \chilli \chilli By adding only switches ($\pm a$), make this game have a purely positive / negative value. What is this value?
+
+$$
+\{ -3 | 1 \} + \left\{0 \bigg| \frac{1}{2}\right\} + \{-3* | -2* \} + \{*2 | *2\} + \{0, * | 0, *\}
+$$
+
+## Up Miny Down Tiny
+
+5. \chilli \chilli Prove that $+_\uparrow || *2$
+
+6. \chilli \chilli \chilli Prove that for any positive fraction $a$ and integer $b$, and integer $c \geq 2$, that $+_{a + b \cdot \uparrow} || *c$ if and only if $+_{a + b \cdot \uparrow} || *2$
+
+## Reversible Moves
+
+7. \chilli \chilli The formal statement of reversible moves is as follows:
+
+For a game $G = \{A, B, C, \ldots | D, E, F, \ldots\}$, suppose there is some left option of $D$, call it $D_L = \{U, V, W, \ldots | X, Y, Z \ldots\}$, such that $D_L \geq G$.
+
+Then $H = \{A, B, C, \ldots | X, Y, Z, \ldots, E, F, \ldots\} = G$.
+
+Essentially, if right picks $D$, then left can immediately pick $D_L$, so essentially we can just shortcut this and say that right has the option of $X$, $Y$, $Z$ in the first turn.
+
+Prove that this statement is true by evaluating the game $G - H$, keeping in mind $D_L \geq G$.
+
+8. \chilli \chilli \chilli Prove that in a game with finite left and right options, if $\{ A, B, C, \ldots | D, E, F \ldots \} = G = H = \{U, V, W, \ldots | X, Y, Z, \ldots\}$ and no moves in $G$ or $H$ are reversible ($G_{LR} \leq G$) or dominated ($G_{L_1} < G_{L_2}$), then the formulations $G$ and $H$ have the exact same options. That is, $A, B, C \ldots = U, V, W, \ldots$ and $D, E, F \ldots = X, Y, Z \ldots$
+
+# Postface {.unnumbered}
+
+Hope you enjoyed the problems! If you did, or just generally found the theory interesting, Winning Ways for your Mathematical Plays is an excellent book that covers much, much, much more of this, with a lot more whimsy, wit, and weird/wonderful diagrams \fontspec{Symbola}\symbol{"1F601}
 
