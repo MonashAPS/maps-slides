@@ -118,6 +118,8 @@ graph H {
 
 * Based 1 book of 4 volumes
 * Quick overview of the concepts - it goes much deeper than this!
+* We might not get everything done
+* *Experimental*
 
 . . .
 
