@@ -42,7 +42,11 @@
 	..args,
 	body,
 ) = {
-	set text(size: 25pt)
+	set text(size: 25pt, font: "Inter")
+	// fix weird thing where bolding it would make it extrabold
+	set strong(delta: 0)
+	show strong: set text(weight: "bold")
+
 	show heading.where(level: 1): set text(1.4em)
 	show link: it => underline(text(blue, it))
 
