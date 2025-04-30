@@ -37,6 +37,19 @@
 	touying-slide(self: self, config: config, repeat: repeat, setting: setting, composer: composer, ..bodies)
 })
 
+#let blank-slide(
+	config: (:),
+	repeat: auto,
+	setting: body => body,
+	composer: auto,
+	..bodies,
+) = touying-slide-wrapper(self => {
+	let self = utils.merge-dicts(self, config-common(
+		subslide-preamble: none
+	))
+	touying-slide(self: self, config: config, repeat: repeat, setting: setting, composer: composer, ..bodies)
+})
+
 #let maps-theme(
 	aspect-ratio: "16-9",
 	..args,
