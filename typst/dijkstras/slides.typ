@@ -277,9 +277,7 @@ heapq.heappop(heap) # Returns 1
 
 == Reading Graphs
 
-#slide(repeat: 2, self => [
-	#let (only,) = utils.methods(self)
-
+#let with-graph-input(body) = [
 	#let size = 0.7em
 	#grid(
 		columns: (1fr, 2fr),
@@ -301,41 +299,49 @@ heapq.heappop(heap) # Returns 1
 				```
 			]
 		},
-		[
-			#only(1, place(center, graph({
-				n((0, 0), name: <0>, [3])
-				n(example-graph-node-pos(1), name: <1>, [1])
-				n(example-graph-node-pos(2), name: <2>, [3])
-				n(example-graph-node-pos(3), name: <3>, [6])
-				n(example-graph-node-pos(4), name: <4>, [4])
-				n(example-graph-node-pos(5), name: <5>, [2])
-
-				edge(<1>, <0>, 5)
-				edge(<2>, <0>, 1)
-				edge(<3>, <0>, 5)
-				edge(<4>, <0>, 3)
-				edge(<5>, <0>, 2)
-				edge(<2>, <3>, 5, label-side: right)
-				edge(<3>, <4>, 1, label-side: right)
-				edge(<4>, <5>, 7)
-				edge(<5>, <1>, 1)
-			})))
-			#only(2)[
-				#set text(size)
-				```py
-				n, m = map(int, input().split())
-				graph = [[] for _ in range(n)]
-				for _ in range(m):
-					from_, to, weight = map(int, input().split())
-					# Adjusting from 1-indexing to 0-indexing
-					from_ -= 1
-					to -= 1
-					graph[from_].append((to, weight))
-					graph[to].append((from, weight))
-				```
-			]
-		]
+		body(size)
 	)
+]
+
+#with-graph-input(_ =>
+	place(
+		center,
+		graph({
+			n((0, 0), name: <0>, [3])
+			n(example-graph-node-pos(1), name: <1>, [1])
+			n(example-graph-node-pos(2), name: <2>, [3])
+			n(example-graph-node-pos(3), name: <3>, [6])
+			n(example-graph-node-pos(4), name: <4>, [4])
+			n(example-graph-node-pos(5), name: <5>, [2])
+
+			edge(<1>, <0>, 5)
+			edge(<2>, <0>, 1)
+			edge(<3>, <0>, 5)
+			edge(<4>, <0>, 3)
+			edge(<5>, <0>, 2)
+			edge(<2>, <3>, 5, label-side: right)
+			edge(<3>, <4>, 1, label-side: right)
+			edge(<4>, <5>, 7)
+			edge(<5>, <1>, 1)
+		})
+	)
+)
+
+---
+
+#with-graph-input(size => [
+	#set text(size)
+	```py
+	n, m = map(int, input().split())
+	graph = [[] for _ in range(n)]
+	for _ in range(m):
+		from_, to, weight = map(int, input().split())
+		# Adjusting from 1-indexing to 0-indexing
+		from_ -= 1
+		to -= 1
+		graph[from_].append((to, weight))
+		graph[to].append((from, weight))
+	```
 ])
 
 == Dijkstra's Algorithm Implementation
