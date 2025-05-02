@@ -302,7 +302,7 @@ heapq.heappop(heap) # Returns 1
 			]
 		},
 		[
-			#only(1, graph({
+			#only(1, place(center, graph({
 				n((0, 0), name: <0>, [3])
 				n(example-graph-node-pos(1), name: <1>, [1])
 				n(example-graph-node-pos(2), name: <2>, [3])
@@ -319,7 +319,7 @@ heapq.heappop(heap) # Returns 1
 				edge(<3>, <4>, 1, label-side: right)
 				edge(<4>, <5>, 7)
 				edge(<5>, <1>, 1)
-			}))
+			})))
 			#only(2)[
 				#set text(size)
 				```py
