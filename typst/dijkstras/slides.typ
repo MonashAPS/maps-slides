@@ -64,7 +64,6 @@
 		columns: 2,
 		gutter: 1em,
 		[
-			#set text(.8em)
 			While there are unvisited nodes:
 			- Get the #highlight(fill: curr)[unvisited node with the smallest distance]
 			- Update the distances of the #highlight(fill: adj)[adjacent nodes]
@@ -126,7 +125,7 @@
 		columns: 2,
 		gutter: 1em,
 		[
-			#set text(0.7em)
+			#set text(0.76em)
 			- Let's consider a particular iteration. Why is is it valid to visit that node and 'lock in' its distance?
 			#uncover("2-")[- Because every other unvisited node has a greater or equal distance, there's no way to use those nodes to reach the green node at a smaller distance]
 			#uncover("3-")[
@@ -198,7 +197,7 @@
 
 == Implementation Details
 
-#[#set text(0.7em)
+#[#set text(0.75em)
 While there are unvisited nodes:
 - #pin(1)Get the unvisited node with the smallest distance#pin(2)
 - Update the distances of the adjacent nodes
@@ -212,20 +211,18 @@ We use a data structure called a *heap*.
 
 == Heaps (Priority Queues)
 
-#[#set text(0.9em)
 Heaps store a collection of sortable objects and allow you to:
 - *Push:* add an object onto the heap
 - *Pop:* get and remove the smallest (or largest) object in the heap
 all in $cal(O)(log n)$ time.
 
 If we store nodes in the heap, then we can easily get the one with the smallest distance efficiently.
-]
 
 ---
 
-#[#set text(0.8em)
 Python's heap is a *min* heap.
 
+#[#set text(0.88em)
 ```py
 import heapq
 
@@ -278,9 +275,9 @@ heapq.heappop(heap) # Returns 1
 == Reading Graphs
 
 #let with-graph-input(body) = [
-	#let size = 0.7em
+	#let size = 0.84em
 	#grid(
-		columns: (1fr, 2fr),
+		columns: (1fr, 5fr),
 		gutter: 1em,
 		{
 			set text(size)
@@ -346,7 +343,7 @@ heapq.heappop(heap) # Returns 1
 
 == Dijkstra's Algorithm Implementation
 
-#let impl = [#set text(0.419em)
+#let impl = [#set text(0.44em)
 ```py
 import heapq
 
@@ -374,10 +371,10 @@ while heap:
 == Complexity
 
 #grid(
-	columns: (3fr, 4fr),
+	columns: (2fr, 3fr),
 	gutter: 1em,
 	[
-		#set text(0.675em)
+		#set text(0.69em)
 		- We have $V$ vertices (nodes) and $E$ edges.
 		- We insert into the heap at most twice for each edge in the graph: $cal(O)(E log E)$
 		- There are at most $V^2$ edges (in a simple graph):

@@ -55,7 +55,10 @@
 	..args,
 	body,
 ) = {
-	set text(size: 25pt, font: "Inter")
+	set text(size: 25pt, font: "Atkinson Hyperlegible Next")
+	show raw: set text(font: "Atkinson Hyperlegible Mono")
+	set underline(offset: 5pt)
+
 	// fix weird thing where bolding it would make it extrabold
 	set strong(delta: 0)
 	show strong: set text(weight: "bold")
