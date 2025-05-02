@@ -1,10 +1,10 @@
-#import "@preview/codly:1.3.0"
-#import "@preview/fletcher:0.5.7": diagram, edge, hide,node
+#import "@preview/codly:1.3.0" as codly: codly-range
+#import "@preview/fletcher:0.5.7" as fletcher: diagram, edge, node
 #import "@preview/pinit:0.2.2": pin, pinit-arrow, pinit-highlight, pinit-point-from
 #import "@preview/touying:0.6.1": components, config-info, pause, utils, touying-reducer
 #import "../template.typ": blank-slide, maps-theme, slide, title-slide
 
-#let diagram = touying-reducer.with(reduce: diagram, cover: hide)
+#let diagram = touying-reducer.with(reduce: diagram, cover: fletcher.hide)
 
 #show: maps-theme.with(config-info(
 	title: [Dijkstra’s Algorithm],
@@ -343,19 +343,19 @@ heapq.heappop(heap) # Returns 1
 
 == Dijkstra's Algorithm Implementation
 
-#let impl = [#set text(0.44em)
-```py
+#[
+#let impl = ```py
 import heapq
 
-# None indicates ∞ (the node has not been visited yet)
-distances: list[int | None] = [None for _ in range(len(graph))]
-# heap contains tuples (distance, node)
-heap = [(0, 0)] # Start at node 0 with distance 0
+# None indicates ∞ (node has not been visited yet)
+distances: list[int | None] = [None] * range(len(graph))
+# Contains tuples (distance, node)
+# Start at node 0 with distance 0
+heap = [(0, 0)]
 distances[0] = 0
-
 while heap:
 	distance, current = heapq.heappop(heap)
-	# Skip nodes that already have a better distance
+	# Skip nodes that already have a shorter distance
 	if distance > distances[current]:
 		continue
 
@@ -364,17 +364,28 @@ while heap:
 		if distances[next] is None or new_distance < distances[next]:
 			distances[next] = new_distance
 			heapq.heappush(heap, (new_distance, next))
-```]
+```
+#let columns = (45%, auto)
+#let code-size = 0.6em
+#let while-loop-start = 9
 
-#impl
+#{
+	set text(code-size)
+	grid(
+		columns: columns,
+		gutter: 0.85em,
+		codly-range(1, end: while-loop-start - 1) + impl,
+		codly-range(while-loop-start) + impl,
+	)
+}
 
 == Complexity
 
 #grid(
-	columns: (2fr, 3fr),
-	gutter: 1em,
+	columns: columns,
+	gutter: 0.5em,
 	[
-		#set text(0.69em)
+		#set text(0.7em)
 		- We have $V$ vertices (nodes) and $E$ edges.
 		- We insert into the heap at most twice for each edge in the graph: $cal(O)(E log E)$
 		- There are at most $V^2$ edges (in a simple graph):
@@ -385,8 +396,13 @@ while heap:
 			&=&& cal(O)(E log V) \
 			$
 	],
-	impl,
+	{
+		set text(code-size)
+		codly-range(while-loop-start)
+		impl
+	},
 )
+]
 
 == Contest
 
