@@ -337,7 +337,7 @@ heapq.heappop(heap) # Returns 1
 		from_ -= 1
 		to -= 1
 		graph[from_].append((to, weight))
-		graph[to].append((from, weight))
+		graph[to].append((from_, weight))
 	```
 ])
 
@@ -348,7 +348,7 @@ heapq.heappop(heap) # Returns 1
 import heapq
 
 # None indicates ∞ (node has not been visited yet)
-distances: list[int | None] = [None] * range(len(graph))
+distances: list[int | None] = [None] * len(graph)
 # Contains tuples (distance, node)
 # Start at node 0 with distance 0
 heap = [(0, 0)]
